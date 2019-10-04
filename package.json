@@ -1,0 +1,19 @@
+{
+  "name": "aws-space-migrator",
+  "version": "1.0.0",
+  "description": "Migrate AWS S3 references to Digital Ocean spaces in Mongo",
+  "main": "index.js",
+  "repository": "https://github.com/mutaimwiti/aws-space-migrator.git",
+  "author": "Mutai Mwiti",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "nodemon": "^1.19.3"
+  }
+}
