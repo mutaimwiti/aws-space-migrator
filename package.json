@@ -15,5 +15,9 @@
     "@babel/node": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "nodemon": "^1.19.3"
+  },
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "mongodb": "^3.3.2"
   }
 }

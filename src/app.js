@@ -1,5 +1,13 @@
+import connect from './db';
+
 const main = () => {
-  console.log('good');
+  connect((err, conn) => {
+    if (err) {
+      throw err;
+    }
+
+    console.log('connected');
+  })
 };
 
 export default main;
