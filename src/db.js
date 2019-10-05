@@ -1,27 +1,22 @@
 import {MongoClient} from 'mongodb';
 
-const getClient = () => {
-  const {MONGO_URI} = process.env;
-
-  return new MongoClient(
-    MONGO_URI,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    }
-  );
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 };
 
-const connect = (cb) => {
-  const client = getClient();
+const connect = () => {
+  const {DB_NAME, MONGO_URI} = process.env;
 
-  client.connect(err => {
-    if (err) {
-      cb(err, null);
-    } else {
-      cb(false, client);
-    }
+  return new Promise((resolve, reject) => {
+    MongoClient.connect(MONGO_URI, options, (err, client) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(client.db(DB_NAME));
+    })
   });
 };
+
 
 export default connect;
