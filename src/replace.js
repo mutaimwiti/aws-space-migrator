@@ -57,23 +57,35 @@ const replace = async (collection, fields) => {
   return found;
 };
 
+const handleError = (error) => {
+  console.error("Sorry :( An error occurred!");
+  console.error("========ERROR BEGIN=======");
+  console.error(error);
+  console.error("=========ERROR END========");
+  process.exit(1);
+};
+
 const exec = async () => {
-  const db = await connect();
+  try {
+    const db = await connect();
 
-  const collectionFields = getFields();
+    const collectionFields = getFields();
 
-  for (let collectionName of Object.keys(collectionFields)) {
-    const fields = collectionFields[collectionName];
+    for (let collectionName of Object.keys(collectionFields)) {
+      const fields = collectionFields[collectionName];
 
-    const collection = db.collection(collectionName);
+      const collection = db.collection(collectionName);
 
-    const count = await replace(collection, fields);
+      const count = await replace(collection, fields);
 
-    if (count) {
-      console.log(`Found and replaced ${count} occurrences in ${collectionName}`);
-    } else {
-      console.log(`Found no occurrences in ${collectionName}`);
+      if (count) {
+        console.log(`Found and replaced ${count} occurrences in ${collectionName}`);
+      } else {
+        console.log(`Found no occurrences in ${collectionName}`);
+      }
     }
+  } catch (error) {
+    handleError(error);
   }
 };
 
