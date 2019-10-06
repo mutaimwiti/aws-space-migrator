@@ -1,4 +1,7 @@
 require('dotenv').config();
 import app from './src/app';
 
-app();
+(async () => {
+  await app();
+  process.exit(0);
+})();
