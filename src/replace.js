@@ -79,9 +79,9 @@ const exec = async () => {
       const count = await replace(collection, fields);
 
       if (count) {
-        console.log(`Found and replaced ${count} occurrences in ${collectionName}`);
+        console.log(`Found and replaced ${count} occurrences in "${collectionName}"`);
       } else {
-        console.log(`Found no occurrences in ${collectionName}`);
+        console.log(`Found no occurrences in "${collectionName}"`);
       }
     }
   } catch (error) {
