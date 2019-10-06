@@ -1,3 +1,5 @@
+import {writeFileSync} from 'fs';
+
 const logError = (error) => {
   console.error("Sorry :( An error occurred!");
   console.error("========ERROR BEGIN=======");
@@ -14,8 +16,9 @@ const logCollectionReplacements = (collection, count) => {
 
 };
 
-const logAllReplacements = (count) => {
+const logAllReplacements = (replacements, count) => {
   console.info(`Total replacements: ${count}`);
+  writeFileSync('replace.log.json', JSON.stringify(replacements, null, 2));
 };
 
 export {

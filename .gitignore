@@ -63,3 +63,6 @@ typings/
 # editors
 .idea/
 .vscode/
+
+# replacement log
+replace.log.json

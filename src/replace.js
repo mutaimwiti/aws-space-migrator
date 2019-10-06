@@ -24,6 +24,8 @@ const getFields = () => {
   return fields;
 };
 
+const allReplacements = [];
+
 const replace = async (collection, fields) => {
   const {TARGET_STR, REPLACEMENT_STR} = process.env;
 
@@ -40,14 +42,16 @@ const replace = async (collection, fields) => {
       if (fieldValue.includes(TARGET_STR)) {
         found++;
 
-        const update = {
-          $set: {
-            [field]: fieldValue.replace(TARGET_STR, REPLACEMENT_STR)
-          }
-        };
+        const replacementValue = fieldValue.replace(TARGET_STR, REPLACEMENT_STR);
+
+        allReplacements.push([fieldValue, replacementValue]);
 
         updates.push(
-          collection.updateOne({_id: document._id}, update)
+          collection.updateOne({_id: document._id}, {
+            $set: {
+              [field]: replacementValue
+            }
+          })
         );
       }
     });
@@ -78,7 +82,7 @@ const exec = async () => {
       logCollectionReplacements(collectionName, count);
     }
 
-    logAllReplacements(allCount);
+    logAllReplacements(allReplacements, allCount);
   } catch (error) {
     logError(error);
     process.exit(1);
