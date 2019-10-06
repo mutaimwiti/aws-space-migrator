@@ -1,4 +1,4 @@
-import {exec} from "./utils";
+import {exec} from "./replace";
 
 const main = async () => {
   await exec()
