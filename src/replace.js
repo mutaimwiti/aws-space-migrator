@@ -71,6 +71,8 @@ const exec = async () => {
 
     const collectionFields = getFields();
 
+    let allCount = 0;
+
     for (let collectionName of Object.keys(collectionFields)) {
       const fields = collectionFields[collectionName];
 
@@ -78,12 +80,16 @@ const exec = async () => {
 
       const count = await replace(collection, fields);
 
+      allCount += count;
+
       if (count) {
-        console.log(`Found and replaced ${count} occurrences in "${collectionName}"`);
+        console.info(`Found and replaced ${count} occurrences in "${collectionName}"`);
       } else {
-        console.log(`Found no occurrences in "${collectionName}"`);
+        console.info(`Found no occurrences in "${collectionName}"`);
       }
     }
+
+    console.info(`[Total replacements = ${allCount}]`);
   } catch (error) {
     handleError(error);
   }
