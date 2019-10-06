@@ -1,6 +1,7 @@
 import {readFileSync} from 'fs';
 import dotProp from 'dot-prop';
 import connect from "./db";
+import {logAllReplacements, logCollectionReplacements, logError} from "./log";
 
 const getFields = () => {
   const data = JSON.parse(
@@ -57,14 +58,6 @@ const replace = async (collection, fields) => {
   return found;
 };
 
-const handleError = (error) => {
-  console.error("Sorry :( An error occurred!");
-  console.error("========ERROR BEGIN=======");
-  console.error(error);
-  console.error("=========ERROR END========");
-  process.exit(1);
-};
-
 const exec = async () => {
   try {
     const db = await connect();
@@ -82,16 +75,13 @@ const exec = async () => {
 
       allCount += count;
 
-      if (count) {
-        console.info(`Found and replaced ${count} occurrences in "${collectionName}"`);
-      } else {
-        console.info(`Found no occurrences in "${collectionName}"`);
-      }
+      logCollectionReplacements(collectionName, count);
     }
 
-    console.info(`[Total replacements = ${allCount}]`);
+    logAllReplacements(allCount);
   } catch (error) {
-    handleError(error);
+    logError(error);
+    process.exit(1);
   }
 };
 
