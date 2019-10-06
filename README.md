@@ -1,2 +1,2 @@
-# aws-space-migrator
-Migrate AWS S3 references to Digital Ocean spaces in Mongo
+# mongo-str-replace
+Replace string occurrences in MongoDB fields
