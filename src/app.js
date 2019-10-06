@@ -1,13 +1,7 @@
-import connect from './db';
+import {exec} from "./utils";
 
-const main = () => {
-  connect((err, conn) => {
-    if (err) {
-      throw err;
-    }
-
-    console.log('connected');
-  })
+const main = async () => {
+  await exec()
 };
 
 export default main;
