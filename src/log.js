@@ -17,8 +17,9 @@ const logCollectionReplacements = (collection, count) => {
 };
 
 const logAllReplacements = (replacements, count) => {
+  const {DB_NAME} = process.env;
   console.info(`Total replacements: ${count}`);
-  writeFileSync('replace.log.json', JSON.stringify(replacements, null, 2));
+  writeFileSync(`${DB_NAME}.log.json`, JSON.stringify(replacements, null, 2));
 };
 
 export {

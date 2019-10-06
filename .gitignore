@@ -65,4 +65,4 @@ typings/
 .vscode/
 
 # replacement log
-replace.log.json
+*.log.json
