@@ -1,0 +1,5 @@
+# Blacklist everything
+# Except this file and fields.example.json
+/**
+!.gitignore
+!fields.example.json
