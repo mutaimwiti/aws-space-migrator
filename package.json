@@ -1,9 +1,9 @@
 {
   "name": "aws-space-migrator",
   "version": "1.0.0",
-  "description": "Migrate AWS S3 references to Digital Ocean spaces in Mongo",
+  "description": "Replace string occurrences in MongoDB fields",
   "main": "index.js",
-  "repository": "https://github.com/mutaimwiti/aws-space-migrator.git",
+  "repository": "https://github.com/mutaimwiti/mongo-str-replace.git",
   "author": "Mutai Mwiti",
   "license": "MIT",
   "scripts": {
